@@ -1,0 +1,52 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+    <!-- Article and news section start-->
+    <section class="article-and-news background-@Model.Value("articlesAndNewsBackgroundColo")">
+        <div class="container">
+            <div class="article-and-news-title">
+                <h3>Article & News</h3>
+                <div>
+                    <h2>Get Every Single Articles & News</h2>
+                    <button class="button-transparent"><span>Browse Articles</span><i class="fa-solid fa-arrow-trend-up"></i></button>
+                </div>
+            </div>
+            <div class="article-and-news-grid">
+
+                @{
+                	var selection = Umbraco.Content(Guid.Parse("ef6a4241-281c-4017-b654-f0194bac4f3f"))
+                    .Children()
+                    .Where(x => x.IsVisible())
+                    .Take(3);
+                }
+                	@foreach (var item in selection)
+                	{
+		                <a  class="article-and-news-card">
+                            <div>
+                                <h6>@item.Value("articleDay")</h6>
+                                <p>@item.Value("articleMonth")</p>
+                            </div>
+                            @{
+                                var thumbnail = item.Value<IPublishedContent>("articleImage");
+                            }
+                            <img src="@thumbnail.Url()"/>
+                            <h3>Business</h3>
+                            <h2>@item.Value("articleTitle")</h2>
+                            <p>@item.Value("articleDescription")</p>
+                        </a>
+                	}
+                
+            </div>
+            <div class="carousel-dots">
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Article and news section end-->
+
+
+

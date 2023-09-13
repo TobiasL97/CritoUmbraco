@@ -1,0 +1,10 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContactPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "PageWithBreadcrumb.cshtml";
+}
+
+@await Html.PartialAsync("_ContactCardSection")
+@await Html.PartialAsync("_MessageSection")
+@await Html.PartialAsync("_GoogleMapsSection")

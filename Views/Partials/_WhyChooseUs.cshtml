@@ -1,0 +1,54 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+    <!-- Why choose us section start-->
+    <section class="why-choose-us">
+        <div class="background-rectangle"></div>
+        <div class="container">
+            <h3>Why choose us</h3>
+            <div class="choose-us-grid">
+                <div class="choose-us-content">
+                    <h2>Why We Are The Best Business Consulting Agency</h2>
+                    <div class="choose-us-offers">
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        <span>
+                            <h4>Process Excellence</h4>
+                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+                        </span>
+                    </div>
+                    <div class="choose-us-offers">
+                        <i class="fa-solid fa-diamond"></i>
+                        <span>
+                            <h4>Strategic Planning</h4>
+                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+                        </span>
+                    </div>
+                    <div class="choose-us-offers">
+                        <i class="fa-solid fa-pen-nib"></i>
+                        <span>
+                            <h4>Experience Design</h4>
+                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+                        </span>
+                    </div>
+                    <div class="choose-us-offers">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>
+                            <h4>Artificial Inteligence</h4>
+                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="choose-us-image">
+                    @{
+                        var whyChooseUsImage = Model.Value<MediaWithCrops>("WhyChooseUsImage");
+                        if (whyChooseUsImage != null)
+                        {
+                            <img src="@whyChooseUsImage.MediaUrl()" alt=""/>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Why choose us section end-->

@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+    <!-- Showcase section start-->
+    <section class="showcase">
+        <div class="container">
+            <div class="showcase-content">
+                <div class="showcase-text">
+                    <h1>@Model.Value("showcaseTitle")</h1>
+                    <p>@Model.Value("showcaseDescription")</p>
+                    <div class="showcase-buttons">
+                        <a href="@Model.Value("showcaseButtonUrl")" class="button-yellow"><span>@Model.Value("showcaseButtonText")</span><i class="fa-solid fa-arrow-trend-up"></i></a>
+                        <a href="/service" class="button-white"><span>Learn More</span><i class="fa-solid fa-arrow-trend-up"></i></a>
+                    </div>
+                </div>
+           
+                @{
+                    var showcaseImage = Model.Value<MediaWithCrops>("showcaseImage");
+                    if (showcaseImage != null)
+                    {
+                        <img src="@showcaseImage.MediaUrl()" alt="@Model.Value("showcaseTitle") "/>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+    <!-- Showcase section end-->

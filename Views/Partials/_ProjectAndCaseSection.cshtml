@@ -1,0 +1,71 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+    <!-- Project and case section start-->
+    <section class="project-and-case">
+        <div class="container">
+            <div class="project-and-case-title">
+                <h3>Project & Case Studies</h3>
+                <h2>Let’s Looks Our Global Projects</h2>
+            </div>
+            <div class="project-and-case-grid">
+                <div class="project-and-case-card">
+                @{
+                    var imageOne = Model.Value<MediaWithCrops>("ProjectAndCaseImageOne");
+                    if (imageOne != null)
+                    {
+                        <img src="@imageOne.MediaUrl()" alt=""/>
+                    }
+                }
+                    <h4>Grow your business</h4>
+                    <div>
+                        <a href="#">Read More <i class="fa-solid fa-arrow-trend-up"></i></a>
+                    </div>
+                </div>
+                <div class="project-and-case-card">
+                    @{
+                        var imageTwo = Model.Value<MediaWithCrops>("ProjectAndCaseImageTwo");
+                        if (imageTwo != null)
+                        {
+                            <img src="@imageTwo.MediaUrl()" alt=""/>
+                        }
+                    }
+                    <h4>Why your client needs a responsive website</h4>
+                    <div>
+                        <a href="#">Read More <i class="fa-solid fa-arrow-trend-up"></i></a>
+                    </div>
+                </div>
+                <div class="project-and-case-card">
+                    @{
+                        var imageThree = Model.Value<MediaWithCrops>("ProjectAndCaseImageThree");
+                        if (imageThree != null)
+                        {
+                            <img src="@imageThree.MediaUrl()" alt=""/>
+                        }
+                    }
+                    <h4>Educate your employees to get better results</h4>
+                    <div>
+                        <a href="#">Read More <i class="fa-solid fa-arrow-trend-up"></i></a>
+                    </div>
+                </div>
+                <div class="project-and-case-card">
+                    @{
+                        var imageFour = Model.Value<MediaWithCrops>("ProjectAndCaseImageFour");
+                        if (imageFour != null)
+                        {
+                            <img src="@imageFour.MediaUrl()" alt=""/>
+                        }
+                    }
+                    <h4>Business Insights is a important piece of your business</h4>
+                    <div>
+                        <a href="#">Read More <i class="fa-solid fa-arrow-trend-up"></i></a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="project-and-case-button">
+                <button class="button-dark"><span>All Recent Projects</span><i class="fa-solid fa-arrow-trend-up"></i></button>
+            </div>
+        </div>
+    </section>
+    <!-- Project and case section end-->

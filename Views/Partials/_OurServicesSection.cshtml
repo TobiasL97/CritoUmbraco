@@ -1,0 +1,67 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+
+
+    <!-- Our services section start-->
+    <section class="our-services">
+        <div class="container">
+            <h3>Our Services</h3>
+            <h1>We Provide The Best Service For Consulting</h1>
+            <div class="service-grid">
+                
+            
+            @{
+            	var selection = Umbraco.Content(Guid.Parse("74349ca0-1eb4-4981-bf6f-b32748e4236b"))
+                .ChildrenOfType("ourServiceCard")
+                .Where(x => x.IsVisible());
+            }
+            
+        	@foreach (var item in selection)
+        	{
+                <div class="service-card">
+                    <span></span>
+                    <h2>@item.Value("ourServiceCardTitle")</h2>
+                    <p>@item.Value("ourServiceCardDescription")</p>
+                    <div>
+                        <a  class="arrow-button"><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+        	}
+            
+
+
+
+                
+            </div>
+            <div class="service-button">
+                <button class="button-transparent"><span>Get consulting</span><i class="fa-solid fa-arrow-trend-up"></i></button>
+            </div>
+        </div>
+    </section>
+    <!-- Our services section end-->
+
+<!--
+<div class="service-card">
+                    <span></span>
+                    <h2>Startup Business</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis in nam possimus.</p>
+                    <div>
+                        <button class="arrow-button"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <span></span>
+                    <h2>Financial Advice</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis in nam possimus.</p>
+                    <div>
+                        <button class="arrow-button"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <span></span>
+                    <h2>Risk Management</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis in nam possimus.</p>
+                    <div>
+                        <button class="arrow-button"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+-->

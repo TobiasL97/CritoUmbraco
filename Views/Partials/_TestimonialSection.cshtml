@@ -1,0 +1,87 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+    <!-- Testimonial section start-->
+    <section class="testimonial">
+        <div class="container">
+            <div class="testimonial-title">
+                <h3>Testimonial</h3>
+                <h2>What Our Client Says</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="review-stars">
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium libero, ad dignissimos velit qui, dolorum obcaecati cum saepe nesciunt nemo eligendi numquam voluptate"</p>
+                    <div class="review-person">
+                    @{
+                        var imageOne = Model.Value<MediaWithCrops>("TestimonialImageOne");
+                        if (imageOne != null)
+                        {
+                            <img src="@imageOne.MediaUrl()" alt=""/>
+                        }
+                    }
+                        <div class="review-person-details">
+                            <h3>Cassandra Warren</h3>
+                            <p>Business Manager, Dorfus</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="review-stars">
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium libero, ad dignissimos velit qui, dolorum obcaecati cum saepe nesciunt nemo eligendi numquam voluptate"</p>
+                    <div class="review-person">
+                    @{
+                        var imageTwo = Model.Value<MediaWithCrops>("TestimonialImageTwo");
+                        if (imageTwo != null)
+                        {
+                            <img src="@imageTwo.MediaUrl()" alt=""/>
+                        }
+                    }
+                        <div class="review-person-details">
+                            <h3>Amanda Tulling</h3>
+                            <p>Senior Developer, Square</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="review-stars">
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium libero, ad dignissimos velit qui, dolorum obcaecati cum saepe nesciunt nemo eligendi numquam voluptate"</p>
+                    <div class="review-person">
+                    @{
+                        var imageThree = Model.Value<MediaWithCrops>("TestimonialImageThree");
+                        if (imageThree != null)
+                        {
+                            <img src="@imageThree.MediaUrl()" alt=""/>
+                        }
+                    }
+                        <div class="review-person-details">
+                            <h3>Jack Mcdogglas</h3>
+                            <p>Key Account Manager, Gobona</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="all-reviews-button">
+                <button class="button-dark"><span>All Reviews</span><i class="fa-solid fa-arrow-trend-up"></i></button>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonial section end-->

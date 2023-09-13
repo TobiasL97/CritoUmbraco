@@ -1,0 +1,19 @@
+﻿
+
+
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.OurServicesCards)Model.Content;
+    //var settings = (ContentModels.MyElementTypeAliasOfSettings)Model.Settings;
+}
+
+// Output the value of field with alias 'heading' from the Element Type selected as Content section
+<div class="service-card">
+    <span></span>
+    <h2>@content.Value("ourServicesBlockItemTitle")</h2>
+    <p>@content.Value("ourServicesBlockItemDescription")</p>
+    <div>
+        <button class="arrow-button"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+</div>

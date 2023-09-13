@@ -1,0 +1,70 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+
+    <!-- Meet our team section start-->
+    <section class="meet-our-staff">
+        <div class="container">
+            <div class="meet-our-staff-title">
+                <h3>Meet Our Team</h3>
+                <div>
+                    <h2>Experience Team Members</h2>
+                    <button class="button-transparent"><span>Browse Team</span><i class="fa-solid fa-arrow-trend-up"></i></button>
+                </div>
+            </div>
+            <div class="meet-our-staff-grid">
+                <div class="meet-our-staff-card">
+                    @{
+                        var imageOne = Model.Value<MediaWithCrops>("MeetOurTeamImageOne");
+                        if (imageOne != null)
+                        {
+                            <img src="@imageOne.MediaUrl()" alt=""/>
+                        }
+                    }
+                    <h4>Kristine Palmer</h4>
+                    <p>Chef Operation Officer</p>
+                </div>
+                <div class="meet-our-staff-card">
+                    @{
+                        var imageTwo = Model.Value<MediaWithCrops>("MeetOurTeamImageTwo");
+                        if (imageTwo != null)
+                        {
+                            <img src="@imageTwo.MediaUrl()" alt=""/>
+                        }
+                    }
+                    <h4>Kristine Palmer</h4>
+                    <p>Senior Consultant</p>
+                </div>
+                <div class="meet-our-staff-card">
+                    @{
+                        var imageThree = Model.Value<MediaWithCrops>("MeetOurTeamImageThree");
+                        if (imageThree != null)
+                        {
+                            <img src="@imageThree.MediaUrl()" alt=""/>
+                        }
+                    }
+                    <h4>Kristine Palmer</h4>
+                    <p>Senior Consultant</p>
+                </div>
+                <div class="meet-our-staff-card">
+                    @{
+                        var imageFour = Model.Value<MediaWithCrops>("MeetOurTeamImageFour");
+                        if (imageFour != null)
+                        {
+                            <img src="@imageFour.MediaUrl()" alt=""/>
+                        }
+                    }
+                    <h4>Kristine Palmer</h4>
+                    <p>Senior Tech Consultant</p>
+                </div>
+            </div>
+            <div class="carousel-dots">
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Meet our team section end-->
