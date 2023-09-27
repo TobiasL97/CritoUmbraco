@@ -9,34 +9,7 @@
             <div class="choose-us-grid">
                 <div class="choose-us-content">
                     <h2>Why We Are The Best Business Consulting Agency</h2>
-                    <div class="choose-us-offers">
-                        <i class="fa-regular fa-thumbs-up"></i>
-                        <span>
-                            <h4>Process Excellence</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
-                        </span>
-                    </div>
-                    <div class="choose-us-offers">
-                        <i class="fa-solid fa-diamond"></i>
-                        <span>
-                            <h4>Strategic Planning</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
-                        </span>
-                    </div>
-                    <div class="choose-us-offers">
-                        <i class="fa-solid fa-pen-nib"></i>
-                        <span>
-                            <h4>Experience Design</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
-                        </span>
-                    </div>
-                    <div class="choose-us-offers">
-                        <i class="fa-solid fa-brain"></i>
-                        <span>
-                            <h4>Artificial Inteligence</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
-                        </span>
-                    </div>
+                    @Html.GetBlockListHtml(Model.WhyChooseUsContent)
                 </div>
                 <div class="choose-us-image">
                     @{

@@ -612,10 +612,9 @@ a {
   font-family: "DM sans", sans-serif;
   font-weight: 700;
 }
-.meet-our-staff .container .meet-our-staff-grid {
+.meet-our-staff .container .meet-our-staff-grid .umb-block-list {
   margin-top: 100px;
   margin-bottom: 30px;
-  gap: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }

@@ -65,7 +65,29 @@
 </section>
 <!-- Why choose us section end-->
 @await Html.PartialAsync("_ProjectAndCaseSection")
-@await Html.PartialAsync("_MeetOurTeamSection")
+    <!-- Meet our team section start-->
+    <section class="meet-our-staff">
+        <div class="container">
+            <div class="meet-our-staff-title">
+                <h3>Meet Our Team</h3>
+                <div>
+                    <h2>@Model.Value("meetOurTeamTitle")</h2>
+                    <a href="@Model.Value("meetOurTeamButtonUrl")" class="button-transparent"><span>@Model.Value("featuresButtonText")</span><i class="fa-solid fa-arrow-trend-up"></i></a>
+                </div>
+            </div>
+            <div class="meet-our-staff-grid">
+                @Html.GetBlockListHtml(Model.MeetOurTeamContent)
+            </div>
+            <div class="carousel-dots">
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Meet our team section end-->
 @await Html.PartialAsync("_TestimonialSection")
 @await Html.PartialAsync("_ArticlesAndNewsSection")
 @await Html.PartialAsync("_NewsSignupSection")
