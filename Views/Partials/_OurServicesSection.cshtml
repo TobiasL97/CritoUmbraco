@@ -7,16 +7,6 @@
             <h3>Our Services</h3>
             <h1>We Provide The Best Service For Consulting</h1>
             <div class="service-grid">
-                
-            
-            @{
-            	var selection = Umbraco.Content(Guid.Parse("74349ca0-1eb4-4981-bf6f-b32748e4236b"))
-                .ChildrenOfType("ourServiceCard")
-                .Where(x => x.IsVisible());
-            }
-            
-        	@foreach (var item in selection)
-        	{
                 <div class="service-card">
                     <span></span>
                     <h2>@item.Value("ourServiceCardTitle")</h2>
@@ -25,12 +15,6 @@
                         <a  class="arrow-button"><i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
-        	}
-            
-
-
-
-                
             </div>
             <div class="service-button">
                 <button class="button-transparent"><span>Get consulting</span><i class="fa-solid fa-arrow-trend-up"></i></button>

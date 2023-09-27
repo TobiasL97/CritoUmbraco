@@ -5,6 +5,16 @@
 	Layout = "PageWithBreadcrumb.cshtml";
 }
 
-@await Html.PartialAsync("_ContactCardSection")
+    <!-- contact card section start -->
+    <section class="contact-cards">
+        <div class="container">
+            <div class="cards-grid">
+                @Html.GetBlockListHtml(Model.ContactCardContent)
+
+
+            </div>
+        </div>
+    </section>
+    <!-- contact card section end -->
 @await Html.PartialAsync("_MessageSection")
 @await Html.PartialAsync("_GoogleMapsSection")

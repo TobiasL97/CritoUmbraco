@@ -1,6 +1,114 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Article>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Services;
+@using Umbraco.Cms.Core.Models;
+@inject IUserService UserService;
 @{
-	Layout = null;
+	Layout = "PageWithBreadcrumb.cshtml";
+	var userService = UserService;
 }
+
+<!-- news detail section start -->
+<section class="news-details">
+    <div class="container">
+        <div class="details-header">
+            <h1>@Model.Value("articleTitle")</h1>
+            <div class="header-details">
+                <p>@Model.CreateDate.ToString("MMM dd, yyyy")</p>
+                <div class="yellow-dot"></div>
+                <p>@Model.Value("articleCategory")</p>
+                <div class="yellow-dot"></div>
+                <p>@Model.CreatorName(userService)</p>
+            </div>
+        </div>
+        <div class="news-details-grid">
+            <div class="news-details-body">
+                @{
+                    var articleImage = Model.Value<MediaWithCrops>("articleImage");
+                    if (articleImage != null)
+                    {
+                        <img src="@articleImage.MediaUrl()" alt=""/>
+                    }
+                }
+                <div class="news-details-text">
+                    @Model.Value("articleText")
+                </div>
+                <div class="tags">
+                    
+                    @if(Model.HasValue("articleTags"))
+                    {
+                     var tags = Model.Value<IEnumerable<string>>("articleTags");
+                        
+                            @foreach(var tag in tags)
+                            {
+                                <a href="#" class="tag">@tag</a>
+                            }
+                        
+                    }
+                </div>
+            </div>
+            <div class="sidebar">
+                <input type="text" placeholder="Type to search...">
+                <div class="recent-posts">
+                    <h3>Recent Posts</h3>
+
+                    @{
+                    	var selection = Umbraco.Content(Guid.Parse("ef6a4241-281c-4017-b654-f0194bac4f3f"))
+                        .ChildrenOfType("article")
+                        .Where(x => x.IsVisible())
+                        .Take(4);
+                    }
+                    
+                    @if(selection != null)
+                    {
+                    
+                    	@foreach (var item in selection)
+                    	{
+                            <a href="@item.Url()" class="post">  
+                                <h5>@item.Value("articleTitle")</h5>
+                                <p>@item.CreateDate.ToString("MMM dd, yyyy")</p>
+                            </a>
+                    	}
+                    
+                    }
+
+            </div>
+            
+            <div class="categories">
+                    <h3>Categories</h3>
+                    <div class="category">
+                        <h6>Technology</h6>
+                        <span>-</span>
+                        <a href="#">20 Posts</a>
+                    </div>
+                    <div class="category">
+                        <h6>Freelancing</h6>
+                        <span>-</span>
+                        <a href="#">07 Posts</a>
+                    </div>
+                    <div class="category">
+                        <h6>Writing</h6>
+                        <span>-</span>
+                        <a href="#">16 Posts</a>
+                    </div>
+                    <div class="category">
+                        <h6>Marketing</h6>
+                        <span>-</span>
+                        <a href="#">11 Posts</a>
+                    </div>
+                    <div class="category">
+                        <h6>Business</h6>
+                        <span>-</span>
+                        <a href="#">35 Posts</a>
+                    </div>
+                    <div class="category">
+                        <h6>Education</h6>
+                        <span>-</span>
+                        <a href="#">14 Posts</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+<!-- news detail section end -->

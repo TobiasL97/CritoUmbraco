@@ -1,9 +1,22 @@
+using Crito.Context;
+using Crito.Services;
+using Lucene.Net.Util.Fst;
+using Serilog.Context;
+using Umbraco.Cms.Core.Composing;
+using Umbraco.Cms.Core.Notifications;
+using Umbraco.Extensions;
+
 namespace Crito
 {
+
+
+
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
         private readonly IConfiguration _config;
+
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup" /> class.
@@ -29,12 +42,17 @@ namespace Crito
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
                 .AddWebsite()
                 .AddDeliveryApi()
                 .AddComposers()
-                .Build();
+            .Build();
+
+            services.AddUmbracoEFCoreContext<DataContext>("DataSource=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\tobbe\\Documents\\Message_DB.mdf;Integrated Security=True;Connect Timeout=30", "System.Data.SqlClient");
+
         }
 
         /// <summary>
@@ -62,5 +80,7 @@ namespace Crito
                     u.UseWebsiteEndpoints();
                 });
         }
+
+
     }
 }

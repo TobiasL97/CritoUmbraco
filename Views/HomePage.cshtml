@@ -1,15 +1,69 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
 @{
 	Layout = "PageWithShowcase.cshtml";
 }
 
 @await Html.PartialAsync("_BrandSection")
-@await Html.PartialAsync("_FeaturesSection")
+
+<section class="features">
+    <div class="container">
+        <div class="features-learn-more">
+            <h6>Features</h6>
+            <h3>@Model.Value("featuresTitle")</h3>
+            <a href="@Model.Value("featuresButtonUrl")" class="button-yellow"><span>@Model.Value("featuresButtonText")</span><i class="fa-solid fa-arrow-trend-up"></i></a>
+        </div>
+        <div class="features-advice">
+            @Html.GetBlockListHtml(Model.FeaturesContent)
+
+        </div>
+    </div>
+</section>
+    
 @await Html.PartialAsync("_AboutCompanySection")
-@await Html.PartialAsync("_OurServicesSection")
-@await Html.PartialAsync("_WhyChooseUs")
+
+<!-- Our services section start-->
+<section class="our-services">
+    <div class="container">
+        <h3>Our Services</h3>
+        <h1>@Model.Value("ourServicesTitle")</h1>
+        <div class="service-grid">
+        @Html.GetBlockListHtml(Model.OurServiceContent)
+        </div>
+        <div class="service-button">
+            <button class="button-transparent"><span>Browse Services</span><i class="fa-solid fa-arrow-trend-up"></i></button>
+        </div>
+    </div>
+</section>
+<!-- Our services section end-->
+
+<!-- Why choose us section start-->
+<section class="why-choose-us">
+    <div class="background-rectangle"></div>
+    <div class="container">
+        <h3>Why choose us</h3>
+        <div class="choose-us-grid">
+            <div class="choose-us-content">
+                <h2>@Model.Value("whyChooseUsTitle")</h2>
+                @Html.GetBlockListHtml(Model.WhyChooseUsContent)
+
+            </div>
+            <div class="choose-us-image">
+                @{
+                    var whyChooseUsImage = Model.Value<MediaWithCrops>("WhyChooseUsImage");
+                    if (whyChooseUsImage != null)
+                    {
+                        <img src="@whyChooseUsImage.MediaUrl()" alt=""/>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Why choose us section end-->
 @await Html.PartialAsync("_ProjectAndCaseSection")
 @await Html.PartialAsync("_MeetOurTeamSection")
 @await Html.PartialAsync("_TestimonialSection")

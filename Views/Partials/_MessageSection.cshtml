@@ -1,15 +1,26 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Crito.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var contactForm = new ContactForm();
+}
 
     <section class="leave-us-a-message">
         <div class="container">
             <div class="leave-us-a-message-header">
                 <h1>Leave us a message <br>for any information.</h1>
             </div>
+
+        @using (Html.BeginUmbracoForm("Index", "Contacts", FormMethod.Post))
+        {
+
             <div class="message-grid">
-                <input type="text" placeholder="Name*">
-                <input type="text" placeholder="Email*">
-                <textarea placeholder="Your Message*"></textarea>
+                <input asp-for="@contactForm.Name" type="text" placeholder="Name*">
+                <input asp-for="@contactForm.Email" type="text" placeholder="Email*">
+                <textarea asp-for="@contactForm.Message" placeholder="Your Message*"></textarea>
                 <button class="button-yellow"><span>Send Message</span><i class="fa-solid fa-arrow-trend-up"></i></button>
             </div>
+            
+        }
         </div>
     </section>

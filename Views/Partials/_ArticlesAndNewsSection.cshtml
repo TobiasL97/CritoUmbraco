@@ -14,35 +14,50 @@
             <div class="article-and-news-grid">
 
                 @{
-                	var selection = Umbraco.Content(Guid.Parse("ef6a4241-281c-4017-b654-f0194bac4f3f"))
-                    .Children()
-                    .Where(x => x.IsVisible())
-                    .Take(3);
+
+                var itemsPerPage = 9;
+                var pageNumber = 1;
+
+                if(!int.TryParse(Context.Request.Query["page"], out pageNumber))
+                {
+                    pageNumber = 1;
                 }
-                	@foreach (var item in selection)
-                	{
-		                <a  class="article-and-news-card">
+
+
+                var selection = Umbraco?.Content(Guid.Parse("ef6a4241-281c-4017-b654-f0194bac4f3f"))?
+                .Children()
+                .Where(x => x.IsVisible());
+
+                var totalItems = selection?.Count() ?? 0;
+                var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);
+            }
+                @if(pagedItems != null) 
+                {
+                    @foreach (var item in pagedItems)
+                    {
+                        <a href="@item.Url()" class="article-and-news-card">
                             <div>
-                                <h6>@item.Value("articleDay")</h6>
-                                <p>@item.Value("articleMonth")</p>
+                                <h6>@item.CreateDate.ToString("dd")</h6>
+                                <p>@item.CreateDate.ToString("MMM")</p>
                             </div>
                             @{
                                 var thumbnail = item.Value<IPublishedContent>("articleImage");
                             }
-                            <img src="@thumbnail.Url()"/>
-                            <h3>Business</h3>
+                            <img src="@thumbnail.Url()" />
+                            <h3>@item.Value("articleCategory")</h3>
                             <h2>@item.Value("articleTitle")</h2>
                             <p>@item.Value("articleDescription")</p>
                         </a>
-                	}
+                    }
+                }
                 
             </div>
             <div class="carousel-dots">
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot active"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
+                <a class="carousel-dot"></a>
+                <a class="carousel-dot active"></a>
+                <a class="carousel-dot"></a>
+                <a class="carousel-dot"></a>
+                <a class="carousel-dot"></a>
             </div>
         </div>
     </section>
