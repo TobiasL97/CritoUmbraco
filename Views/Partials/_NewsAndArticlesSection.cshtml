@@ -16,9 +16,10 @@
                 }
 
 
-                var selection = Umbraco?.Content(Guid.Parse("ef6a4241-281c-4017-b654-f0194bac4f3f"))?
-                .Children()
-                .Where(x => x.IsVisible());
+                var selection = Umbraco.Content(Guid.Parse("97b35988-81f6-429d-bf40-308ac25e0695"))
+                    .Children()
+                    .Where(x => x.IsVisible())
+                    .OrderByDescending(x => x.CreateDate);
 
                 var totalItems = selection?.Count() ?? 0;
                 var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);
@@ -33,17 +34,16 @@
                                 <p>@item.CreateDate.ToString("MMM")</p>
                             </div>
                             @{
-                                var thumbnail = item.Value<IPublishedContent>("articleImage");
+                                var thumbnail = item.Value<IPublishedContent>("newsAndArticlesImage");
                             }
                             <img src="@thumbnail.Url()" />
-                            <h3>@item.Value("articleCategory")</h3>
-                            <h2>@item.Value("articleTitle")</h2>
-                            <p>@item.Value("articleDescription")</p>
+                            <h3>@item.Value("newsAndArticlesCategory")</h3>
+                            <h2>@item.Value("newsAndArticlesTitle")</h2>
+                            <p>@item.Value("newsAndArticlesDescription")</p>
                         </a>
                     }
                 }
                 
-
             </div>
             <div class="carousel-pages">
                 @if(pageNumber > 1) 
