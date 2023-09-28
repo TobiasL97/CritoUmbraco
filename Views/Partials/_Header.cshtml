@@ -1,4 +1,17 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+
+@{
+    var site = Model.Root();
+    var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
+
+}
 
     <!-- Header section start-->
     <header class="header">
@@ -20,10 +33,17 @@
                 </div>
                 <div class="lower">
                     <div class="nav-links">
-                        <a href="home.html">Home</a>
-                        <a href="#">Service</a>
-                        <a href="news.html">News</a>
-                        <a href="contact.html">Contact</a>
+                        <a class="@(Model.Id == site.Id ? "active": null)" href="@site.Url()">@site.Name</a>
+                        
+                        @if (selection?.Length > 0)
+                        {
+                            
+                                @foreach (var item in selection)
+                                {
+                                    <a class="@(item.IsAncestorOrSelf(Model) ? "active": null)" href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+                                }
+                            
+                        }
                     </div>
                     <button class="button-yellow"><span>Login</span><i class="fa-solid fa-arrow-trend-up"></i></button>
                         
@@ -32,3 +52,4 @@
         </div>
     </header>
     <!-- Header section end-->
+
