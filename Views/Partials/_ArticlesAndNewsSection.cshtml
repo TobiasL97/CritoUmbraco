@@ -2,7 +2,7 @@
 @using Umbraco.Cms.Core.Models
 
     <!-- Article and news section start-->
-    <section class="article-and-news background-@Model.Value("articlesAndNewsBackgroundColo")">
+    <section class="article-and-news background-@Model.Value("articlesAndNewsBackgroundColor")">
         <div class="container">
             <div class="article-and-news-title">
                 <h3>Article & News</h3>
@@ -12,45 +12,31 @@
                 </div>
             </div>
             <div class="article-and-news-grid">
-
+                
                 @{
-
-                var itemsPerPage = 9;
-                var pageNumber = 1;
-
-                if(!int.TryParse(Context.Request.Query["page"], out pageNumber))
-                {
-                    pageNumber = 1;
+                    var selection =	Umbraco.Content(Guid.Parse("97b35988-81f6-429d-bf40-308ac25e0695"))
+                        .Children()
+                        .Where(x => x.IsVisible())
+                        .Take(3);
                 }
-
-
-                var selection = Umbraco?.Content(Guid.Parse("ef6a4241-281c-4017-b654-f0194bac4f3f"))?
-                .Children()
-                .Where(x => x.IsVisible());
-
-                var totalItems = selection?.Count() ?? 0;
-                var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);
-            }
-                @if(pagedItems != null) 
-                {
-                    @foreach (var item in pagedItems)
-                    {
+                
+                	@foreach (var item in selection)
+                	{
                         <a href="@item.Url()" class="article-and-news-card">
                             <div>
                                 <h6>@item.CreateDate.ToString("dd")</h6>
                                 <p>@item.CreateDate.ToString("MMM")</p>
                             </div>
                             @{
-                                var thumbnail = item.Value<IPublishedContent>("articleImage");
+                                var thumbnail = item.Value<IPublishedContent>("newsAndArticlesImage");
                             }
                             <img src="@thumbnail.Url()" />
-                            <h3>@item.Value("articleCategory")</h3>
-                            <h2>@item.Value("articleTitle")</h2>
-                            <p>@item.Value("articleDescription")</p>
+                            <h3>@item.Value("newsAndArticlesCategory")</h3>
+                            <h2>@item.Value("newsAndArticlesTitle")</h2>
+                            <p>@item.Value("newsAndArticlesDescription")</p>
                         </a>
-                    }
-                }
-                
+                	}
+
             </div>
             <div class="carousel-dots">
                 <a class="carousel-dot"></a>
@@ -62,6 +48,16 @@
         </div>
     </section>
     <!-- Article and news section end-->
+    
+    
+
+
+
+    
+    
+
+
+
 
 
 
