@@ -64,7 +64,25 @@
     </div>
 </section>
 <!-- Why choose us section end-->
-@await Html.PartialAsync("_ProjectAndCaseSection")
+
+    <!-- Project and case section start-->
+    <section class="project-and-case">
+        <div class="container">
+            <div class="project-and-case-title">
+                <h3>Project & Case Studies</h3>
+                <h2>Let’s Looks Our Global Projects</h2>
+            </div>
+            <div class="project-and-case-grid">
+                @Html.GetBlockListHtml(Model.ProjectAndCaseContent)
+            </div>
+        
+            <div class="project-and-case-button">
+                <button class="button-dark"><span>All Recent Projects</span><i class="fa-solid fa-arrow-trend-up"></i></button>
+            </div>
+        </div>
+    </section>
+    <!-- Project and case section end-->
+    
     <!-- Meet our team section start-->
     <section class="meet-our-staff">
         <div class="container">
