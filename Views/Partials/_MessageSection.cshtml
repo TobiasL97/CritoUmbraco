@@ -15,8 +15,13 @@
         {
 
             <div class="message-grid">
+                <span class="error" asp-validation-for="@contactForm.Name"></span>
                 <input asp-for="@contactForm.Name" type="text" placeholder="Name*">
+
+                <span class="error" asp-validation-for="@contactForm.Email"></span>
                 <input asp-for="@contactForm.Email" type="text" placeholder="Email*">
+
+                <span class="error" asp-validation-for="@contactForm.Message"></span>
                 <textarea asp-for="@contactForm.Message" placeholder="Your Message*"></textarea>
                 <button class="button-yellow"><span>Send Message</span><i class="fa-solid fa-arrow-trend-up"></i></button>
             </div>

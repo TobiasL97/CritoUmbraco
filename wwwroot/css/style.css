@@ -1171,6 +1171,14 @@ a {
   display: grid;
   grid-template-columns: 1fr;
 }
+
+.leave-us-a-message .container .message-grid .error {
+    color: red;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
 .leave-us-a-message .container .message-grid > input {
   padding: 15px 30px;
   margin-bottom: 30px;
