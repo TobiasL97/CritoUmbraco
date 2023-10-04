@@ -1,4 +1,5 @@
 ﻿using Crito.Models;
+using Crito.Services;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Cache;
 using Umbraco.Cms.Core.Logging;
@@ -12,19 +13,29 @@ namespace Crito.Controllers
 {
     public class ContactsController : SurfaceController
     {
-        public ContactsController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
+
+        private readonly ContactFormService contactFormService;
+
+        public ContactsController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider, ContactFormService contactFormService) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
         {
+            this.contactFormService = contactFormService;
         }
 
         [HttpPost]
-        public IActionResult Index(ContactForm contactform)
+        public async Task<IActionResult> Index(ContactForm contactform)
         {
             if (!ModelState.IsValid)
             {
                 return CurrentUmbracoPage();
 
             }
+            else
+            {
+                await contactFormService.AddContactMessage(contactform);
+            }
+
             return LocalRedirect("/");
+
         }
     }
 }

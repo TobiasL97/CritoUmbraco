@@ -1,6 +1,7 @@
 using Crito.Context;
 using Crito.Services;
 using Lucene.Net.Util.Fst;
+using Microsoft.EntityFrameworkCore;
 using Serilog.Context;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.Notifications;
@@ -42,7 +43,9 @@ namespace Crito
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
+            services.AddDbContext<DataContext>(x => x.UseSqlite(_config.GetConnectionString("sqlDB")));
+            services.AddScoped<ContactFormService>();
 
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
@@ -51,7 +54,7 @@ namespace Crito
                 .AddComposers()
             .Build();
 
-            services.AddUmbracoEFCoreContext<DataContext>("DataSource=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\tobbe\\Documents\\Message_DB.mdf;Integrated Security=True;Connect Timeout=30", "System.Data.SqlClient");
+            
 
         }
 
